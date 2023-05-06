@@ -1,4 +1,4 @@
-package com.sweetwaveform.releaseplanner;
+package com.sweetwaveforms.releaseplanner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

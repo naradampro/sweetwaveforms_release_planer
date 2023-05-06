@@ -8,10 +8,10 @@
 		<version>3.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.sweetwaveform</groupId>
-	<artifactId>release_planner</artifactId>
+	<groupId>com.sweetwaveforms</groupId>
+	<artifactId>releaseplanner</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>release_planner</name>
+	<name>releaseplanner</name>
 	<description>SweetWaveforms Release Planner Portal</description>
 	<properties>
 		<java.version>20</java.version>
