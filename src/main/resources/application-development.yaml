@@ -1,0 +1,12 @@
+server:
+  port: 9091
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/swrp_usermanager_development
+    username: swrpapp
+    password: u4Hz5c32$0LW
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
