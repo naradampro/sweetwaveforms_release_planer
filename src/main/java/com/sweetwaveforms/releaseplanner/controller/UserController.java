@@ -1,20 +1,20 @@
 package com.sweetwaveforms.releaseplanner.controller;
 
-import com.sweetwaveforms.releaseplanner.dto.UserDTO;
 import com.sweetwaveforms.releaseplanner.model.User;
 import com.sweetwaveforms.releaseplanner.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:9092")
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/")
 public class UserController {
+
     private final UserService userService;
 
     @Autowired
@@ -22,50 +22,39 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
-    public List<UserDTO> getAllUsers() {
-        List<User> users = userService.findAll();
-        return users.stream()
-                .map(this::mapUserToDTO)
-                .collect(Collectors.toList());
+    // get all users
+    @GetMapping("/users")
+    public List<User> getAllUsers(){
+        return userService.getAllUsers();
     }
 
-    @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
-        User user = mapDTOToUser(userDTO);
-        User savedUser = userService.save(user);
-        return ResponseEntity.created(getUserLocation(savedUser)).body(mapUserToDTO(savedUser));
+    // create user rest api
+    @PostMapping("/users")
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
     }
 
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        userService.delete(id);
-        return ResponseEntity.noContent().build();
+    // get user by id rest api
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+        return ResponseEntity.ok(user);
     }
 
-    private URI getUserLocation(User user) {
-        return ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{email}")
-                .buildAndExpand(user.getEmail())
-                .toUri();
+    // update user rest api
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails){
+        User updatedUser = userService.updateUser(id, userDetails);
+        return ResponseEntity.ok(updatedUser);
     }
 
-    private User mapDTOToUser(UserDTO userDTO) {
-        User user = new User();
-        user.setId(userDTO.getId());
-        user.setFirstName(userDTO.getFirstName());
-        user.setLastName(userDTO.getLastName());
-        user.setEmail(userDTO.getEmail());
-        return user;
-    }
-
-    private UserDTO mapUserToDTO(User user) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(user.getId());
-        userDTO.setFirstName(user.getFirstName());
-        userDTO.setLastName(user.getLastName());
-        userDTO.setEmail(user.getEmail());
-        return userDTO;
+    // delete user rest api
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id){
+        userService.deleteUser(id);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }
+
