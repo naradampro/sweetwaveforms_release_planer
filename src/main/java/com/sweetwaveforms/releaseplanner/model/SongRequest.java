@@ -1,6 +1,7 @@
 package com.sweetwaveforms.releaseplanner.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -24,8 +25,9 @@ public class SongRequest {
     @Column(name = "status")
     private SongRequestStatus status = SongRequestStatus.PENDING;
 
-    @Column(name = "created_date")
-    private LocalDateTime createdDate;
+    @Column(name = "created_date_time")
+    @CreationTimestamp
+    private LocalDateTime createdDateTime;
 
     public SongRequest() {
 
@@ -78,10 +80,10 @@ public class SongRequest {
     }
 
     public LocalDateTime getCreatedDate() {
-        return createdDate;
+        return createdDateTime;
     }
 
     public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+        this.createdDateTime = createdDate;
     }
 }
