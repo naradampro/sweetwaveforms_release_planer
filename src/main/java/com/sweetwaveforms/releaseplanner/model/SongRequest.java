@@ -21,6 +21,9 @@ public class SongRequest {
     @Column(name = "youtube_link")
     private String youtubeLink;
 
+    @Column(name = "creator_id")
+    private long creatorId;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private SongRequestStatus status = SongRequestStatus.PENDING;
@@ -33,10 +36,11 @@ public class SongRequest {
 
     }
 
-    public SongRequest(String title, String artistName, String youtubeLink) {
+    public SongRequest(String title, String artistName, String youtubeLink, long creatorId) {
         this.title = title;
         this.artistName = artistName;
         this.youtubeLink = youtubeLink;
+        this.creatorId = creatorId;
     }
 
     public long getId() {
@@ -70,6 +74,14 @@ public class SongRequest {
     public void setYoutubeLink(String youtubeLink) {
         this.youtubeLink = youtubeLink;
     }
+    
+    public long getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(long creatorId) {
+        this.creatorId = creatorId;
+    }
 
     public SongRequestStatus getStatus() {
         return status;
@@ -81,9 +93,5 @@ public class SongRequest {
 
     public LocalDateTime getCreatedDate() {
         return createdDateTime;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDateTime = createdDate;
     }
 }
