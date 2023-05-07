@@ -16,6 +16,9 @@ public class File {
     @Column(name = "cloud_store_link",length = 800)
     private String cloudStoreLink;
 
+    @Column(name = "release_id")
+    private long releaseId;
+
     @Column(name = "creator_id")
     private long creatorId;
 
@@ -31,11 +34,12 @@ public class File {
 
     }
 
-    public File(String name, String cloudStoreLink, long creatorId, FileType type) {
+    public File(String name, String cloudStoreLink,long releaseId ,long creatorId, FileType type) {
         this.name = name;
         this.cloudStoreLink = cloudStoreLink;
         this.creatorId = creatorId;
         this.type = type;
+        this.releaseId = releaseId;
     }
 
     public long getId() {
@@ -60,6 +64,14 @@ public class File {
 
     public void setCloudStoreLink(String cloudStoreLink) {
         this.cloudStoreLink = cloudStoreLink;
+    }
+
+    public long getReleaseId() {
+        return releaseId;
+    }
+
+    public void setReleaseId(long releaseId) {
+        this.releaseId = releaseId;
     }
 
     public long getCreatorId() {
