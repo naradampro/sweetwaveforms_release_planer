@@ -40,6 +40,7 @@ public class SongRequestService {
         songRequest.setTitle(songRequestDetails.getTitle());
         songRequest.setArtistName(songRequestDetails.getArtistName());
         songRequest.setYoutubeLink(songRequestDetails.getYoutubeLink());
+        songRequest.setCreatorId(songRequestDetails.getCreatorId());
 
         // Set status based on the status in songRequestDetails
         if (songRequestDetails.getStatus() != null) {

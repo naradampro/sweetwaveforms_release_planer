@@ -74,7 +74,7 @@ public class SongRequest {
     public void setYoutubeLink(String youtubeLink) {
         this.youtubeLink = youtubeLink;
     }
-    
+
     public long getCreatorId() {
         return creatorId;
     }
