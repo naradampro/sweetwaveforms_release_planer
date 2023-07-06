@@ -44,4 +44,9 @@ public class WorkManageService {
         }
         return workManageRepository.save(workManager);
     }
+
+    public void deleteWorkManager(Long id){
+        WorkManager workManager = workManageRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Approve request not exist with id: "+id));
+    }
 }
