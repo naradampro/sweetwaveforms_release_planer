@@ -6,25 +6,18 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "files")
+@Table(name = "production")
 public class Production {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "liveLink",length = 800)
     private String liveLink;
 
     @Column(name = "release_id")
     private long releaseId;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type")
-    private FileType type;
 
     @Column(name = "created_date_time")
     @CreationTimestamp
@@ -34,12 +27,11 @@ public class Production {
 
     }
 
-    public Production(Long id, String liveLink,long releaseId , FileType type) {
+    public Production(Long id, String liveLink,long releaseId, LocalDateTime createdDateTime) {
         this.id = id;
         this.liveLink = liveLink;
         this.releaseId = releaseId;
-        this.type = type;
-
+        this.createdDateTime = createdDateTime;
     }
 
     public long getId() {
@@ -50,12 +42,12 @@ public class Production {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getliveLink() {
+        return liveLink;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setliveLink(String liveLink) {
+        this.liveLink = liveLink;
     }
 
     public long getReleaseId() {
@@ -66,17 +58,8 @@ public class Production {
         this.releaseId = releaseId;
     }
 
+    public LocalDateTime getCreatedDateTime() { return createdDateTime; }
 
-    public FileType getType() {
-        return type;
-    }
-
-    public void setType(FileType type) {
-        this.type = type;
-    }
-
-    public LocalDateTime getCreatedDateTime() {
-        return createdDateTime;
-    }
+    public void setCreatedDateTime(LocalDateTime createdDateTime) { this.createdDateTime = createdDateTime; }
 }
 
