@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:9091")
+@CrossOrigin(origins = "http://192.168.8.102:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class SongRequestController {
